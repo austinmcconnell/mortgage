@@ -9,7 +9,8 @@ python:
     - "3.3"
 
 install:
-    - python setup.py install
+    - pip install requirements.txt
+    - pip install requirements_dev.txt
 
 script:
     - pytest
