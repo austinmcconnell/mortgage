@@ -66,6 +66,29 @@ loan.summarize
 >>> Years to pay:                     30.0
 ```
 
+Particularly telling is the Interest to Principal ratio. With the mortgage terms above, you will pay **115%** of the original balance in interest! Compare that to the same loan with a 15 year term below
+
+
+```python
+from mortgage import Loan
+
+loan = Loan(principal=200000, interest=.06, term=15, start_date=(2017,3,1))
+loan.summarize
+
+>>> Original Balance:         $    200,000
+>>> Interest Rate:                    0.06 %
+>>> APY:                              6.17 %
+>>> APR:                              6.00 %
+>>> Term:                               15 years
+>>> Monthly Payment:          $    1687.71
+
+>>> Total principal payments: $ 200,000.00
+>>> Total interest payments:  $ 103,788.46
+>>> Total payments:           $ 303,788.46
+>>> Interest to principal:            51.9 %
+>>> Years to pay:                     15.0
+```
+In this case, you only pay **52%** of the original loan balance in interest. Obviously, the shorter the term with all else equal, the less interest you'll pay. But it helps to know exactly how much more/less you'll pay.
 
 Run The Test Cases
 --------------------
