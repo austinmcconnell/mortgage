@@ -1,7 +1,7 @@
 from decimal import Decimal
 import pytest
 
-from mortgage.loan import Loan
+from mortgage import Loan
 
 
 def convert(value):
