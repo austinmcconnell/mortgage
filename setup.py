@@ -9,7 +9,8 @@ requirements = [
 
 test_requirements = [
     'pytest >=3.0.5, <4.0',
-    'coverage >=4.3, <5.0'
+    'coverage >=4.3, <5.0',
+    'bumpversion >=0.5.3, < 1.0'
 ]
 
 setup(
