@@ -1,8 +1,10 @@
 Mortgage
 ====================
 
-[![Travis][travis_logo]][travis_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
+[![PyPI][pypi_logo]][pypi_link] [![Travis][travis_logo]][travis_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
 
+[pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
+[pypi_link]: https://pypi.python.org/pypi/mortgage
 [travis_logo]: https://img.shields.io/travis/austinmcconnell/mortgage.svg
 [travis_link]: https://travis-ci.org/austinmcconnell/mortgage
 [codecov_logo]: https://img.shields.io/codecov/c/github/austinmcconnell/mortgage.svg
