@@ -16,6 +16,12 @@ Simple mortgage calculator tool
 Installation
 --------------------
 
+To install mortgage, simply:
+
+```commandline
+pip install mortgage
+```
+
 How To Use
 --------------------
 
