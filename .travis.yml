@@ -1,0 +1,29 @@
+# Config file for automatic testing at travis-ci.org
+
+language: python
+
+python:
+    - "3.6"
+    - "3.5"
+    - "3.4"
+    - "3.3"
+
+install:
+    - python setup.py install
+
+script:
+    - pytest
+    - coverage run --source mortgage -m pytest
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
+
+#deploy:
+#  provider: pypi
+#  distributions: sdist bdist_wheel
+#  user: austinmcconnell
+#  password:
+#    secure: PLEASE_REPLACE_ME
+#  on:
+#    tags: true
+#    repo: austinmcconnell/mortgage
+#    condition: py35
