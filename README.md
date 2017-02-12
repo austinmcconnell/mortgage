@@ -67,3 +67,10 @@ From the top level directory, run the following command:
 ```
 pytest
 ```
+
+Thank You
+--------------------
+
+Thanks for checking out the package! I hope you find it useful.
+
+Feel free to open an issue with suggestions, imporovements, ideas, etc.
