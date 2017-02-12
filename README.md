@@ -1,11 +1,14 @@
 Mortgage
 ====================
 
-[![Travis](https://img.shields.io/travis/austinmcconnell/mortgage.svg)](https://travis-ci.org/austinmcconnell/mortgage)
+[![Travis][travis_logo]][travis_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
 
-[![Codecov](https://img.shields.io/codecov/c/github/austinmcconnell/mortgage.svg)](https://codecov.io/gh/austinmcconnell/mortgage)
-
-[![Pyup](https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg)](https://pyup.io/repos/github/austinmcconnell/mortgage/)
+[travis_logo]: https://img.shields.io/travis/austinmcconnell/mortgage.svg
+[travis_link]: https://travis-ci.org/austinmcconnell/mortgage
+[codecov_logo]: https://img.shields.io/codecov/c/github/austinmcconnell/mortgage.svg
+[codecov_link]: https://codecov.io/gh/austinmcconnell/mortgage
+[pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
+[pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
 
 Simple mortgage calculator tool
 
