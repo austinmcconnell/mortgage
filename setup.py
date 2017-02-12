@@ -15,7 +15,7 @@ test_requirements = [
 
 setup(
     name='mortgage',
-    version='1.0.0rc',
+    version='1.0.0',
     description='Mortgage Calculator',
     long_description=readme,
     author='Austin McConnell',
