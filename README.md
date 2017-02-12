@@ -39,12 +39,17 @@ from mortgage import Loan
 Create a simple mortgage
 
 ```python
+from mortgage import Loan
+
 loan = Loan(principal=200000, interest=.06, term=30, start_date=(2017,3,1))
 ```
 
 View a summary of pertinent mortgage information by calling the summarize property.
 
 ```python
+from mortgage import Loan
+
+loan = Loan(principal=200000, interest=.06, term=30, start_date=(2017,3,1))
 loan.summarize
 
 >>> Original Balance:         $    200,000
