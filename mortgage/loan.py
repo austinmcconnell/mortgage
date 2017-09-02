@@ -55,13 +55,13 @@ class Loan(object):
     def monthly_payment(self):
         return self._quantize(self._monthly_payment)
 
-    def _simple_interest(self, p, i, n):
-        amt = p * i * n
+    def _simple_interest(self, term):
+        amt = self.principal * self.interest * term
         return self._quantize(amt)
 
     @property
     def apr(self):
-        new_payment = self._simple_interest(self.principal, self.interest, 1)
+        new_payment = self._simple_interest(term=1)
         apr = new_payment / self.principal
         return self._quantize(apr * 100)
 
