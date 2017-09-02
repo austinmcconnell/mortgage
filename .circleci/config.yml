@@ -23,6 +23,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
+            pip install --editable .
             pytest --cov mortgage
             bash <(curl -s https://codecov.io/bash)
       - store_artifacts:
