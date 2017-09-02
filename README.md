@@ -1,12 +1,12 @@
 Mortgage
 ====================
 
-[![PyPI][pypi_logo]][pypi_link] [![Travis][travis_logo]][travis_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
+[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
 
 [pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
 [pypi_link]: https://pypi.python.org/pypi/mortgage
-[travis_logo]: https://img.shields.io/travis/austinmcconnell/mortgage.svg
-[travis_link]: https://travis-ci.org/austinmcconnell/mortgage
+[circleci_logo]: https://circleci.com/gh/austinmcconnell/mortgage.svg?style=shield
+[circleci_link]: https://circleci.com/gh/austinmcconnell/mortgage
 [codecov_logo]: https://img.shields.io/codecov/c/github/austinmcconnell/mortgage.svg
 [codecov_link]: https://codecov.io/gh/austinmcconnell/mortgage
 [pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
@@ -28,13 +28,13 @@ How To Use
 --------------------
 
 This package is intended to help understand the true cost of a mortgage. It also can help you easily compare between different mortgages.
- 
+
 Begin by importing the loan class
 
 ```python
 from mortgage import Loan
 
-``` 
+```
 
 Create a simple mortgage
 
