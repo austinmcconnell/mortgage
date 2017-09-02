@@ -32,7 +32,7 @@ class Loan(object):
         self._schedule = self._amortize()
 
     @staticmethod
-    def convert(value):
+    def _quantize(value):
         return Decimal(value).quantize(Decimal('0.01'))
 
     def schedule(self, nth_payment=None):
@@ -53,30 +53,30 @@ class Loan(object):
 
     @property
     def monthly_payment(self):
-        return self.convert(self._monthly_payment)
+        return self._quantize(self._monthly_payment)
 
     def _simple_interest(self, p, i, n):
         amt = p * i * n
-        return self.convert(amt)
+        return self._quantize(amt)
 
     @property
     def apr(self):
         new_payment = self._simple_interest(self.principal, self.interest, 1)
         apr = new_payment / self.principal
-        return self.convert(apr * 100)
+        return self._quantize(apr * 100)
 
     @property
     def apy(self):
         apy = (1 + self.interest / self.n_periods) ** self.n_periods - 1
-        return self.convert(apy * 100)
+        return self._quantize(apy * 100)
 
     @property
     def total_principal(self):
-        return self.convert(self.principal)
+        return self._quantize(self.principal)
 
     @property
     def total_interest(self):
-        return self.convert(self.schedule(self.term * 12)['total_interest'])
+        return self._quantize(self.schedule(self.term * 12)['total_interest'])
 
     @property
     def total_paid(self):
