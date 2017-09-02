@@ -1,4 +1,4 @@
 python-dateutil
-coverage
 pytest
+pytest-cov
 bumpversion
