@@ -104,7 +104,7 @@ class Loan(object):
         print('Interest to principal:     {:>11} %'.format(self.interest_to_principle))
         print('Years to pay:              {:>11}'.format(self.years_to_pay))
 
-    def _interest_portion(self, payment_number):
+    def compute_interest_portion(self, payment_number):
         _int = self.interest / 12
         _intp1 = _int + 1
 
@@ -112,6 +112,11 @@ class Loan(object):
                                              - _intp1 ** payment_number)
         denominator = _intp1 * (_intp1 ** (self.n_periods * self.term) - 1)
         return numerator / denominator
+
+    def split_payment(self, number, amount):
+        interest_payment = self.compute_interest_portion(number)
+        principal_payment = amount - interest_payment
+        return interest_payment, principal_payment
 
     def _amortize(self):
         initialize = Installment(number=0,
@@ -125,8 +130,8 @@ class Loan(object):
         balance = self.principal
         for payment_number in range(1, self.term * self.n_periods + 1):
 
-            interest_payment = self._interest_portion(payment_number)
-            principal_payment = self._monthly_payment - interest_payment
+            split = self.split_payment(payment_number, self._monthly_payment)
+            interest_payment, principal_payment = split
 
             total_interest += interest_payment
             balance -= principal_payment
