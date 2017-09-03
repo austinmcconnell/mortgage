@@ -7,7 +7,7 @@ Mortgage
 [pypi_link]: https://pypi.python.org/pypi/mortgage
 [circleci_logo]: https://circleci.com/gh/austinmcconnell/mortgage.svg?style=shield
 [circleci_link]: https://circleci.com/gh/austinmcconnell/mortgage
-[codecov_logo]: https://codecov.io/gh/austinmcconnell/mortgage/branch/master/graph/badge.svgg
+[codecov_logo]: https://codecov.io/gh/austinmcconnell/mortgage/branch/master/graph/badge.svg
 [codecov_link]: https://codecov.io/gh/austinmcconnell/mortgage
 [pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
 [pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
