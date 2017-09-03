@@ -1,7 +1,10 @@
+from collections import namedtuple
 from datetime import date
 from decimal import Decimal
 
 from dateutil.relativedelta import relativedelta
+
+Installment = namedtuple('Installment', 'number payment interest principal total_interest balance')
 
 
 class Loan(object):
@@ -36,7 +39,6 @@ class Loan(object):
         return Decimal(value).quantize(Decimal('0.01'))
 
     def schedule(self, nth_payment=None):
-
         if nth_payment:
             return self._schedule[nth_payment]
         else:
@@ -76,7 +78,7 @@ class Loan(object):
 
     @property
     def total_interest(self):
-        return self._quantize(self.schedule(self.term * 12)['total_interest'])
+        return self._quantize(self.schedule(self.term * 12).total_interest)
 
     @property
     def total_paid(self):
@@ -114,32 +116,32 @@ class Loan(object):
         return numerator / denominator
 
     def _amortize(self):
-
+        initialize = Installment(number=0,
+                                 payment=0,
+                                 interest=0,
+                                 principal=0,
+                                 total_interest=0,
+                                 balance=self.principal)
         schedule = {
-            0: {'date': self.start_date,
-                'payment': 0,
-                'interest': 0,
-                'principal': 0,
-                'total_interest': 0,
-                'balance': self.principal
-
-               }
+            0: initialize
             }
-
+        total_interest = 0
+        balance = self.principal
         for payment_number in self.payment_range:
 
             interest_payment = self._interest_portion(payment_number)
             principal_payment = self._monthly_payment - interest_payment
 
-            row = {'date': schedule[payment_number-1]['date'] + relativedelta(months=1),
-                   'payment': self._monthly_payment,
-                   'interest': interest_payment,
-                   'principal': principal_payment,
-                   'total_interest': schedule[payment_number-1]['total_interest'] + interest_payment,
-                   'balance': schedule[payment_number-1]['balance'] - principal_payment
-                  }
+            total_interest += interest_payment
+            balance -= principal_payment
+            installment = Installment(number=payment_number,
+                                      payment=self._monthly_payment,
+                                      interest=interest_payment,
+                                      principal=principal_payment,
+                                      total_interest=total_interest,
+                                      balance=balance)
 
-            record = {payment_number: row}
+            record = {payment_number: installment}
 
             schedule = {**schedule, **record}
 

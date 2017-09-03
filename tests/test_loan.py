@@ -27,7 +27,7 @@ class TestLoan(object):
 
     @pytest.mark.parametrize('nth_payment, principal', nth_principal)
     def test_nth_principal_payment(self, loan_200k, nth_payment, principal):
-        assert convert(loan_200k.schedule(nth_payment)['principal']) == convert(principal)
+        assert convert(loan_200k.schedule(nth_payment).principal) == convert(principal)
 
     nth_interest = [
         (1, 1000.00),
@@ -38,7 +38,7 @@ class TestLoan(object):
 
     @pytest.mark.parametrize('nth_payment, interest', nth_interest)
     def test_nth_interest_payment(self, loan_200k, nth_payment, interest):
-        assert convert(loan_200k.schedule(nth_payment)['interest']) == convert(interest)
+        assert convert(loan_200k.schedule(nth_payment).interest) == convert(interest)
 
     nth_total_interest = [
         (1, 1000.00),
@@ -49,7 +49,7 @@ class TestLoan(object):
 
     @pytest.mark.parametrize('nth_payment, total_interest', nth_total_interest)
     def test_nth_total_interest_payment(self, loan_200k, nth_payment, total_interest):
-        assert convert(loan_200k.schedule(nth_payment)['total_interest']) == convert(total_interest)
+        assert convert(loan_200k.schedule(nth_payment).total_interest) == convert(total_interest)
 
     nth_balance = [
         (1, 199800.90),
@@ -60,7 +60,7 @@ class TestLoan(object):
 
     @pytest.mark.parametrize('nth_payment, balance', nth_balance)
     def test_nth_balance(self, loan_200k, nth_payment, balance):
-        assert convert(loan_200k.schedule(nth_payment)['balance']) == convert(balance)
+        assert convert(loan_200k.schedule(nth_payment).balance) == convert(balance)
 
     def test_original_balance(self, loan_200k):
         assert loan_200k.principal == convert(200000.00)
