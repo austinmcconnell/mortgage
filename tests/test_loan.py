@@ -10,7 +10,7 @@ def convert(value):
 
 @pytest.fixture(scope='class')
 def loan_200k():
-    return Loan(principal=200000, interest=.06, term=30, start_date=(2017, 3, 1))
+    return Loan(principal=200000, interest=.06, term=30)
 
 
 class TestLoan(object):
