@@ -41,7 +41,7 @@ Create a simple mortgage
 ```python
 from mortgage import Loan
 
-loan = Loan(principal=200000, interest=.06, term=30, start_date=(2017,3,1))
+loan = Loan(principal=200000, interest=.06, term=30)
 ```
 
 View a summary of pertinent mortgage information by calling the summarize property.
@@ -49,7 +49,7 @@ View a summary of pertinent mortgage information by calling the summarize proper
 ```python
 from mortgage import Loan
 
-loan = Loan(principal=200000, interest=.06, term=30, start_date=(2017,3,1))
+loan = Loan(principal=200000, interest=.06, term=30)
 loan.summarize
 
 >>> Original Balance:         $    200,000
@@ -72,7 +72,7 @@ Particularly telling is the Interest to Principal ratio. With the mortgage terms
 ```python
 from mortgage import Loan
 
-loan = Loan(principal=200000, interest=.06, term=15, start_date=(2017,3,1))
+loan = Loan(principal=200000, interest=.06, term=15)
 loan.summarize
 
 >>> Original Balance:         $    200,000
