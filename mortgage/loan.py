@@ -87,7 +87,7 @@ class Loan(object):
 
     @property
     def years_to_pay(self):
-        return round(max(self._schedule.keys()) / 12, 1)
+        return round(self.term * self.n_periods / 12, 1)
 
     @property
     def summarize(self):
@@ -120,9 +120,7 @@ class Loan(object):
                                  principal=0,
                                  total_interest=0,
                                  balance=self.principal)
-        schedule = {
-            0: initialize
-            }
+        schedule = [initialize]
         total_interest = 0
         balance = self.principal
         for payment_number in range(1, self.term * self.n_periods + 1):
@@ -139,6 +137,6 @@ class Loan(object):
                                       total_interest=total_interest,
                                       balance=balance)
 
-            schedule[payment_number] = installment
+            schedule.append(installment)
 
         return schedule
