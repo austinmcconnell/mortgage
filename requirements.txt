@@ -3,5 +3,3 @@ coverage==4.4.1
 py==1.4.34
 pytest==3.2.1
 pytest-cov==2.5.1
-python-dateutil==2.6.1
-six==1.10.0

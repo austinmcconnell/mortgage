@@ -1,20 +1,20 @@
 from collections import namedtuple
-from datetime import date
 from decimal import Decimal
-
-from dateutil.relativedelta import relativedelta
 
 Installment = namedtuple('Installment', 'number payment interest principal total_interest balance')
 
 
 class Loan(object):
-    def __init__(self, principal, interest, term, term_unit='years', compounded='monthly', start_date=None):
+    def __init__(self, principal, interest, term, term_unit='years', compounded='monthly'):
+
+        term_units = {'days', 'months', 'years'}
+        compound = {'daily', 'monthly', 'annually'}
 
         assert principal > 0, 'Principal must be positive value'
         assert 0 <= interest <= 1, 'Interest rate must be between zero and one'
         assert term > 0, 'Term must be a positive number'
-        assert term_unit in ['days', 'months', 'years'], 'term_unit can be either  days, months, or years'
-        assert compounded in ['daily', 'monthly', 'annually'], 'Compounding can occur daily, monthly, or annually'
+        assert term_unit in term_units, 'term_unit can be either  days, months, or years'
+        assert compounded in compound, 'Compounding can occur daily, monthly, or annually'
 
         periods = {
             'daily': 365,
@@ -27,11 +27,7 @@ class Loan(object):
         self.term = term
         self.term_unit = term_unit
         self.compounded = compounded
-        self.start_date = date(*start_date)
         self.n_periods = periods[compounded]
-        self.interest_rate_month = self.interest / 12
-        self.payment_range = range(1, self.term * self.n_periods + 1)
-
         self._schedule = self._amortize()
 
     @staticmethod
@@ -40,17 +36,18 @@ class Loan(object):
 
     def schedule(self, nth_payment=None):
         if nth_payment:
-            return self._schedule[nth_payment]
+            data = self._schedule[nth_payment]
         else:
-            return self._schedule
+            data = self._schedule
+        return data
 
     @property
     def _monthly_payment(self):
-        p = self.principal
-        i = self.interest
-        n = self.n_periods
-        t = self.term
-        payment = p * i / n / (1 - (1 + i / n) ** (- n * t))
+        principal = self.principal
+        _int = self.interest
+        num = self.n_periods
+        term = self.term
+        payment = principal * _int / num / (1 - (1 + _int / num) ** (- num * term))
         return payment
 
     @property
@@ -90,7 +87,7 @@ class Loan(object):
 
     @property
     def years_to_pay(self):
-        return round(self.payment_range[-1] / 12, 1)
+        return round(max(self._schedule.keys()) / 12, 1)
 
     @property
     def summarize(self):
@@ -108,11 +105,12 @@ class Loan(object):
         print('Years to pay:              {:>11}'.format(self.years_to_pay))
 
     def _interest_portion(self, payment_number):
-        i = self.interest_rate_month
-        i1 = i + 1
+        _int = self.interest / 12
+        _intp1 = _int + 1
 
-        numerator = self.principal * i * (i1 ** (self.n_periods * self.term + 1) - i1 ** payment_number)
-        denominator = i1 * (i1 ** (self.n_periods * self.term) - 1)
+        numerator = self.principal * _int * (_intp1 ** (self.n_periods * self.term + 1)
+                                             - _intp1 ** payment_number)
+        denominator = _intp1 * (_intp1 ** (self.n_periods * self.term) - 1)
         return numerator / denominator
 
     def _amortize(self):
@@ -127,7 +125,7 @@ class Loan(object):
             }
         total_interest = 0
         balance = self.principal
-        for payment_number in self.payment_range:
+        for payment_number in range(1, self.term * self.n_periods + 1):
 
             interest_payment = self._interest_portion(payment_number)
             principal_payment = self._monthly_payment - interest_payment
@@ -141,8 +139,6 @@ class Loan(object):
                                       total_interest=total_interest,
                                       balance=balance)
 
-            record = {payment_number: installment}
-
-            schedule = {**schedule, **record}
+            schedule[payment_number] = installment
 
         return schedule
