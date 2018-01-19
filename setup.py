@@ -8,7 +8,7 @@ with open('requirements.txt') as file:
 
 setup(
     name='mortgage',
-    version='1.0.1rc',
+    version='1.0.1',
     description='Mortgage Calculator',
     long_description=README,
     author='Austin McConnell',
