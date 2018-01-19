@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/python:3.6.1
     working_directory: ~/repo
@@ -29,8 +29,33 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+  deploy:
+    - steps:
+      - run:
+          name: Init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = austinmcconnell" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+      - run:
+          name: Create Packages
+          command: |
+            python setup.py sdist bdist_wheel
+      - run:
+          name: Upload to pypi
+          command: |
+            . venv/bin/activate
+            twine upload dist/*
 workflows:
   version: 2
-  build_and_test:
+  build_and_deploy:
     jobs:
-      - build
+      - test:
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              only: master
