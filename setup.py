@@ -14,7 +14,7 @@ setup(
     author='Austin McConnell',
     author_email='austin.s.mcconnell@gmail.com',
     url='https://github.com/austinmcconnell/mortgage',
-    packages=find_packages(),
+    packages=find_packages(exclude='tests'),
     install_requires=REQUIREMENTS,
     license='MIT license',
     zip_safe=False,
