@@ -3,9 +3,6 @@ from setuptools import setup, find_packages
 with open('README.md') as readme_file:
     README = readme_file.read()
 
-with open('requirements.txt') as file:
-    REQUIREMENTS = file.read()
-
 setup(
     name='mortgage',
     version='1.0.1',
@@ -15,7 +12,10 @@ setup(
     author_email='austin.s.mcconnell@gmail.com',
     url='https://github.com/austinmcconnell/mortgage',
     packages=find_packages(exclude='tests'),
-    install_requires=REQUIREMENTS,
+    install_requires=[],
+    extras_require={
+        'develop': ['pytest', 'pytest-cov', 'bumpversion']
+    },
     license='MIT license',
     zip_safe=False,
     keywords='mortgage',
