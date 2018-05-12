@@ -13,7 +13,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install --upgrade pip setuptools
+            pip install --upgrade pip setuptools wheel
             pip install -e .[develop]
       - save_cache:
           key: v1-dependencies-{{ checksum "setup.py" }}
@@ -40,7 +40,8 @@ jobs:
           name: Init .pypirc
           command: |
             echo -e "[pypi]" >> ~/.pypirc
-            echo -e "username = austinmcconnell" >> ~/.pypirc
+            echo -e "repository = $PYPI_REPOSITORY" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
             echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
       - run:
           name: Create Packages
@@ -61,7 +62,24 @@ workflows:
               ignore: /.*/
             branches:
               only: /.*/
-  test_and_deploy:
+  test_and_deploy_testing:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+.\d+.\d+rc\d*$/
+      - deploy:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v\d+.\d+.\d+rc\d*$/
+            branches:
+              ignore: /.*/
+          context: testing
+  test_and_deploy_production:
     jobs:
       - test:
           filters:
@@ -77,3 +95,4 @@ workflows:
               only: /^v\d+.\d+.\d+$/
             branches:
               ignore: /.*/
+          context: production
