@@ -7,8 +7,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "setup.py" }}
+          key: v1-dependencies-{{ checksum "setup.py" }}
       - run:
           name: Install dependencies
           command: |
@@ -16,9 +15,9 @@ jobs:
             . venv/bin/activate
             python setup.py develop
       - save_cache:
+          key: v1-dependencies-{{ checksum "setup.py" }}
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "setup.py" }}
       - run:
           name: Run tests
           command: |
@@ -29,7 +28,11 @@ jobs:
           path: test-reports
           destination: test-reports
   deploy:
-    - steps:
+    docker:
+      - image: circleci/python:3.6.1
+    working_directory: ~/repo
+    steps:
+      - checkout
       - run:
           name: Init .pypirc
           command: |
