@@ -1,5 +1,0 @@
-bumpversion==0.5.3
-coverage==4.4.1
-py==1.4.34
-pytest==3.2.1
-pytest-cov==2.5.1
