@@ -60,13 +60,13 @@ workflows:
             tags:
               ignore: /.*/
             branches:
-              ignore: master
+              only: /.*/
   test_and_deploy:
     jobs:
       - test:
           filters:
             branches:
-              only: master
+              ignore: /.*/
             tags:
               only: /^v\d+.\d+.\d+$/
       - deploy:
