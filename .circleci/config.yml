@@ -8,22 +8,21 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "requirements.txt" }}
+          - v1-dependencies-{{ checksum "setup.py" }}
       - run:
           name: Install dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            python setup.py develop
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+          key: v1-dependencies-{{ checksum "setup.py" }}
       - run:
           name: Run tests
           command: |
             . venv/bin/activate
-            pip install --editable .
             pytest --cov mortgage
             bash <(curl -s https://codecov.io/bash)
       - store_artifacts:
