@@ -13,7 +13,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            python setup.py develop
+            pip install -e .[develop]
       - save_cache:
           key: v1-dependencies-{{ checksum "setup.py" }}
           paths:
