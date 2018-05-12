@@ -1,13 +1,12 @@
 from setuptools import setup, find_packages
 
-with open('README.md') as readme_file:
-    README = readme_file.read()
 
 setup(
     name='mortgage',
     version='1.0.1',
     description='Mortgage Calculator',
-    long_description=README,
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     author='Austin McConnell',
     author_email='austin.s.mcconnell@gmail.com',
     url='https://github.com/austinmcconnell/mortgage',
