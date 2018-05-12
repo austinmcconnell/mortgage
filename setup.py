@@ -14,9 +14,10 @@ setup(
     packages=find_packages(exclude='tests'),
     install_requires=[],
     extras_require={
-        'develop': ['pytest>=3.2.1,<4.0.0',
+        'develop': ['bumpversion>=0.5.3,<1.0.0',
+                    'pytest>=3.2.1,<4.0.0',
                     'pytest-cov>=2.5.1,<3.0.0',
-                    'bumpversion>=0.5.3,<1.0.0']
+                    'twine>=1.11.0,<2.0.0']
     },
     license='MIT license',
     zip_safe=False,
