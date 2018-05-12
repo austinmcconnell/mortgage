@@ -57,7 +57,7 @@ workflows:
             tags:
               ignore: /.*/
             branches:
-              only: master
+              ignore: master
   test_and_deploy:
     jobs:
       - test:
