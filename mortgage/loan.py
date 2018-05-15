@@ -1,10 +1,31 @@
+"""
+mortgage.loan
+~~~~~~~~~~~~~~~~
+
+This module provides a Loan object to create and calculate various mortgage statistics.
+"""
 from collections import namedtuple
 from decimal import Decimal
+from typing import Tuple
 
 Installment = namedtuple('Installment', 'number payment interest principal total_interest balance')
 
 
 class Loan(object):
+    """A user-created :class:`Loan <Loan>` object for creating a loan, calculating amortization
+    schedule, and showing statistics.
+
+    :param principal: The original sum of money borrowed.
+    :param interest: The amount charged by lender for use of the assets.
+    :param term: The lifespan of the loan.
+    :param term_unit: Unit for the lifespan of the loan.
+    :param compounded: Frequency that interest is compounded
+
+    Usage:
+        >>> from mortgage import Loan
+        >>> Loan(principal=200000, interest=.04125, term=15)
+        <Loan principal=200000, interest=0.04125, term=15>
+    """
     def __init__(self, principal, interest, term, term_unit='years', compounded='monthly'):
 
         term_units = {'days', 'months', 'years'}
@@ -30,11 +51,22 @@ class Loan(object):
         self.n_periods = periods[compounded]
         self._schedule = self._amortize()
 
+    def __repr__(self):
+        return f'<Loan principal={self.principal}, interest={self.interest}, term={self.term}>'
+
     @staticmethod
     def _quantize(value):
         return Decimal(value).quantize(Decimal('0.01'))
 
     def schedule(self, nth_payment=None):
+        """Retreive payment information for the nth payment.
+
+                Usage:
+                    >>> from mortgage import Loan
+                    >>> loan = Loan(principal=200000, interest=.06, term=30)
+                    >>> loan.schedule(1)
+                    Installment(number=1, payment=Decimal('1199.101050305504789182922487'), interest=Decimal('1E+3'), principal=Decimal('199.101050305504789182922487'), total_interest=Decimal('1000'), balance=Decimal('199800.8989496944952108170775'))
+                """
         if nth_payment:
             data = self._schedule[nth_payment]
         else:
@@ -52,6 +84,14 @@ class Loan(object):
 
     @property
     def monthly_payment(self):
+        """The total monthly payment (principal and interest) for the loan.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=30)
+            >>> loan.monthly_payment
+            Decimal('1199.10')
+        """
         return self._quantize(self._monthly_payment)
 
     def _simple_interest(self, term):
@@ -59,34 +99,94 @@ class Loan(object):
         return self._quantize(amt)
 
     @property
-    def apr(self):
+    def apr(self) -> Decimal:
+        """The annual percentage rate (or APR) is the amount of interest on your total loan amount
+        that you'll pay annually (averaged over the full term of the loan)
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.apr
+            Decimal('6.00')
+        """
         new_payment = self._simple_interest(term=1)
         apr = new_payment / self.principal
         return self._quantize(apr * 100)
 
     @property
-    def apy(self):
+    def apy(self) -> Decimal:
+        """The annual percentage yield (APY) is the effective annual rate of return taking into
+        account the effect of compounding interest.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.apy
+            Decimal('6.17')
+        """
         apy = (1 + self.interest / self.n_periods) ** self.n_periods - 1
         return self._quantize(apy * 100)
 
     @property
-    def total_principal(self):
+    def total_principal(self) -> Decimal:
+        """Total principal paid over the life of the loan.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.total_principal
+            Decimal('200000.00')
+        """
         return self._quantize(self.principal)
 
     @property
-    def total_interest(self):
+    def total_interest(self) -> Decimal:
+        """Total interest paid over the life of the loan.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.total_interest
+            Decimal('103788.46')
+        """
         return self._quantize(self.schedule(self.term * 12).total_interest)
 
     @property
-    def total_paid(self):
+    def total_paid(self) -> Decimal:
+        """Total paid (principal and interest) over the life of the loan.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.total_paid
+            Decimal('303788.46')
+        """
         return self.total_principal + self.total_interest
 
     @property
-    def interest_to_principle(self):
+    def interest_to_principle(self) -> Decimal:
+        """Property that returns percentage of the principal is payed to the bank over the life of the loan in
+        interest charges.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.interest_to_principle
+            Decimal('51.9')
+        """
         return round(self.total_interest / self.total_principal * 100, 1)
 
     @property
-    def years_to_pay(self):
+    def years_to_pay(self) -> float:
+        """Property that returns how many years it will take to pay off this loan given the
+        payment schedule.
+
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.years_to_pay
+            15.0
+        """
         return round(self.term * self.n_periods / 12, 1)
 
     @property
@@ -104,17 +204,30 @@ class Loan(object):
         print('Interest to principal:     {:>11} %'.format(self.interest_to_principle))
         print('Years to pay:              {:>11}'.format(self.years_to_pay))
 
-    def compute_interest_portion(self, payment_number):
-        _int = self.interest / 12
-        _intp1 = _int + 1
+    def split_payment(self, number: int, amount: Decimal) -> Tuple[Decimal, Decimal]:
+        """Splits payment amount into principal and interest.
 
-        numerator = self.principal * _int * (_intp1 ** (self.n_periods * self.term + 1)
-                                             - _intp1 ** payment_number)
-        denominator = _intp1 * (_intp1 ** (self.n_periods * self.term) - 1)
-        return numerator / denominator
+        :param number: the payment number (e.g. nth payment)
+        :param amount: the total payment amount to be split
 
-    def split_payment(self, number, amount):
-        interest_payment = self.compute_interest_portion(number)
+        Usage:
+            >>> from mortgage import Loan
+            >>> from decimal import Decimal
+            >>> loan = Loan(principal=200000, interest=.06, term=15)
+            >>> loan.split_payment(number=180, amount=Decimal(1199.10))
+            (Decimal('8.396585353715933437157525763'), Decimal('1190.703414646283975613372297'))
+        """
+
+        def compute_interest_portion(payment_number):
+            _int = self.interest / 12
+            _intp1 = _int + 1
+
+            numerator = self.principal * _int * (_intp1 ** (self.n_periods * self.term + 1)
+                                                 - _intp1 ** payment_number)
+            denominator = _intp1 * (_intp1 ** (self.n_periods * self.term) - 1)
+            return numerator / denominator
+
+        interest_payment = compute_interest_portion(number)
         principal_payment = amount - interest_payment
         return interest_payment, principal_payment
 
