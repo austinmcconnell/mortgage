@@ -1,7 +1,7 @@
 Mortgage
 ====================
 
-[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link]
+[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link] [![ReadTheDocs][readthedocs_logo]][readthedocs_link]
 
 [pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
 [pypi_link]: https://pypi.python.org/pypi/mortgage
@@ -11,6 +11,9 @@ Mortgage
 [codecov_link]: https://codecov.io/gh/austinmcconnell/mortgage
 [pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
 [pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
+[readthedocs_logo]: https://readthedocs.org/projects/mortgage/badge/?version=latest
+[readthedocs_link]: http://mortgage.readthedocs.io/en/latest/?badge=latest
+
 
 Simple mortgage calculator tool
 
@@ -23,6 +26,13 @@ To install mortgage, simply:
 ```commandline
 pip install mortgage
 ```
+
+
+Documentation
+-------------------
+
+Documentation is available at [https://mortgage.readthedocs.io](https://mortgage.readthedocs.io)
+
 
 How To Use
 --------------------
