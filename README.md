@@ -16,7 +16,9 @@ Mortgage
 [saythanks_logo]: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
 [saythanks_link]: https://saythanks.io/to/austinmcconnell
 
-Simple mortgage calculator tool
+![test](docs/_static/mortgage-logo.jpg)
+
+Mortgage is a simple calculator intended to aid comprehension of the true cost of a mortgage.
 
 
 Installation
