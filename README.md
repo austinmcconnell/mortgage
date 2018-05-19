@@ -1,7 +1,7 @@
 Mortgage
 ====================
 
-[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link] [![ReadTheDocs][readthedocs_logo]][readthedocs_link]
+[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link] [![ReadTheDocs][readthedocs_logo]][readthedocs_link] [![Say Thanks!][saythanks_logo]][saythanks_link]
 
 [pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
 [pypi_link]: https://pypi.python.org/pypi/mortgage
@@ -13,7 +13,8 @@ Mortgage
 [pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
 [readthedocs_logo]: https://readthedocs.org/projects/mortgage/badge/?version=latest
 [readthedocs_link]: http://mortgage.readthedocs.io/en/latest/?badge=latest
-
+[saythanks_logo]: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
+[saythanks_link]: https://saythanks.io/to/austinmcconnell
 
 Simple mortgage calculator tool
 

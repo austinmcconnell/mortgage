@@ -11,9 +11,7 @@ Table of Contents
    :caption: Contents:
 
    introduction
-   tutorial
    api
-   contribute
 
 Indices and tables
 ==================

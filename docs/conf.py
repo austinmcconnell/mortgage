@@ -109,9 +109,11 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 html_sidebars = {
-    'index':    ['sidebar_intro.html','localtoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html']
+    'index':    ['sidebar_intro.html', 'localtoc.html', 'relations.html', 'sourcelink.html',
+                 'searchbox.html'],
+    '**':       ['sidebar_intro.html', 'localtoc.html', 'relations.html', 'sourcelink.html',
+                 'searchbox.html']
 }
-
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
