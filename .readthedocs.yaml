@@ -1,0 +1,7 @@
+## See http://docs.readthedocs.io/en/latest/yaml-config.html
+
+python:
+    version: 3
+    setup_py_install: true
+    extra_requirements:
+        - develop
