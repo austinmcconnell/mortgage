@@ -25,32 +25,37 @@ How To Use
 This package is intended to help understand the true cost of a mortgage.
 It also can help you easily compare between different mortgages.
 
+.. testsetup:: *
+
+   from mortgage import Loan
+
 Begin by importing the loan class
 
-.. code:: python
+.. code-block:: python
 
    >>> from mortgage import Loan
 
 Create a simple mortgage
 
-.. code:: python
+.. doctest:: example1
 
    >>> loan = Loan(principal=200000, interest=.06, term=30)
+   >>> loan
+   <Loan principal=200000, interest=0.06, term=30>
 
 View a summary of pertinent mortgage information by calling the
 summarize property.
 
-.. code:: python
+.. doctest:: example1
 
    >>> loan.summarize
-
    Original Balance:         $    200,000
    Interest Rate:                    0.06 %
    APY:                              6.17 %
    APR:                              6.00 %
    Term:                               30 years
    Monthly Payment:          $    1199.10
-
+   <BLANKLINE>
    Total principal payments: $ 200,000.00
    Total interest payments:  $ 231,676.38
    Total payments:           $ 431,676.38
