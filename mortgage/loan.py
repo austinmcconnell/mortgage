@@ -52,7 +52,7 @@ class Loan(object):
         self._schedule = self._amortize()
 
     def __repr__(self):
-        return f'<Loan principal={self.principal}, interest={self.interest}, term={self.term}>'
+        return '<Loan principal={}, interest={}, term={}>'.format(self.principal, self.interest, self.term)
 
     @staticmethod
     def _quantize(value):
