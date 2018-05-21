@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  test:
+  test-3.7: &test-template
     docker:
-      - image: circleci/python:3.6.1
+      - image: circleci/python:3.7
     working_directory: ~/repo
     steps:
       - checkout
@@ -13,7 +13,6 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install --upgrade pip setuptools wheel
             pip install -e .[develop]
       - save_cache:
           key: v1-dependencies-{{ checksum "setup.py" }}
@@ -23,11 +22,19 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            pytest --cov mortgage
+            pytest
             bash <(curl -s https://codecov.io/bash)
       - store_artifacts:
           path: test-reports
           destination: test-reports
+  test-3.6:
+    <<: *test-template
+    docker:
+      - image: circleci/python:3.6
+  test-3.5:
+    <<: *test-template
+    docker:
+      - image: circleci/python:3.5
   deploy:
     docker:
       - image: circleci/python:3.6.1
@@ -54,42 +61,27 @@ jobs:
             twine upload dist/*
 workflows:
   version: 2
-  test:
+  test_and_deploy:
     jobs:
-      - test:
-          filters:
-            tags:
-              ignore: /.*/
-            branches:
-              only: /.*/
-  test_and_deploy_testing:
-    jobs:
-      - test:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v\d+.\d+.\d+rc\d*$/
+      - test-3.5
+      - test-3.6
+      - test-3.7
       - deploy:
           requires:
-            - test
+            - test-3.5
+            - test-3.6
+            - test-3.7
           filters:
             tags:
               only: /^v\d+.\d+.\d+rc\d*$/
             branches:
               ignore: /.*/
           context: testing
-  test_and_deploy_production:
-    jobs:
-      - test:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v\d+.\d+.\d+$/
       - deploy:
           requires:
-            - test
+            - test-3.5
+            - test-3.6
+            - test-3.7
           filters:
             tags:
               only: /^v\d+.\d+.\d+$/

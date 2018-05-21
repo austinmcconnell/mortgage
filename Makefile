@@ -31,8 +31,7 @@ lint:
 
 ## run tests quickly with the default Python
 test:
-	pytest --quiet --tb=no --strict --exitfirst
-	cd docs && make doctest
+	pytest
 
 ## check code coverage quickly with the default Python
 coverage:
