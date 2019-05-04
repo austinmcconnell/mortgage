@@ -12,7 +12,7 @@ setup(
     author='Austin McConnell',
     author_email='austin.s.mcconnell@gmail.com',
     url='https://github.com/austinmcconnell/mortgage',
-    packages=find_packages(exclude='tests'),
+    packages=find_packages(exclude=['docs', 'tests']),
     python_requires='>=3.5',
     install_requires=[],
     extras_require={
