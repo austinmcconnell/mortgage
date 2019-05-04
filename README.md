@@ -1,30 +1,15 @@
 Mortgage
 ====================
 
-[![PyPI][pypi_logo]][pypi_link]
-[![CircleCI][circleci_logo]][circleci_link]
-[![Maintainability Coverage][codeclimate_maintainability_logo]][codeclimate_maintainability_link]
-[![Test Coverage][codeclimate_testcoverage_logo]][codeclimate_testcoverage_link]
-[![Pyup][pyup_logo]][pyup_link]
-[![ReadTheDocs][readthedocs_logo]][readthedocs_link]
-[![Say Thanks!][saythanks_logo]][saythanks_link]
+[![PyPI](https://img.shields.io/pypi/v/mortgage.svg)](https://pypi.python.org/pypi/mortgage)
+[![CircleCI](https://circleci.com/gh/austinmcconnell/mortgage.svg?style=shield)](https://circleci.com/gh/austinmcconnell/mortgage)
+[![CodeClimate Maintainability](https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/maintainability)](https://codeclimate.com/github/austinmcconnell/mortgage/maintainability)
+[![CodeClimate Test Coverage](https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/test_coverage)](https://codeclimate.com/github/austinmcconnell/mortgage/test_coverage)
+[![Pyup](https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg)](https://pyup.io/repos/github/austinmcconnell/mortgage/)
+[![ReadTheDocs](https://readthedocs.org/projects/mortgage/badge/?version=latest)](http://mortgage.readthedocs.io/en/latest/?badge=latest)
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/austinmcconnell)
 
-[pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
-[pypi_link]: https://pypi.python.org/pypi/mortgage
-[circleci_logo]: https://circleci.com/gh/austinmcconnell/mortgage.svg?style=shield
-[circleci_link]: https://circleci.com/gh/austinmcconnell/mortgage
-[codeclimate_maintainability_logo]: https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/maintainability
-[codeclimate_maintainability_link]: https://codeclimate.com/github/austinmcconnell/mortgage/maintainability
-[codeclimate_testcoverage_logo]: https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/test_coverage
-[codeclimate_testcoverage_link]: https://codeclimate.com/github/austinmcconnell/mortgage/test_coverage
-[pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
-[pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
-[readthedocs_logo]: https://readthedocs.org/projects/mortgage/badge/?version=latest
-[readthedocs_link]: http://mortgage.readthedocs.io/en/latest/?badge=latest
-[saythanks_logo]: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
-[saythanks_link]: https://saythanks.io/to/austinmcconnell
-
-![test](docs/_static/mortgage-logo.jpg)
+![Logo](docs/_static/mortgage-logo.jpg)
 
 Mortgage is a simple calculator intended to aid comprehension of the true cost of a mortgage.
 
