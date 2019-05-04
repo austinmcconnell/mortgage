@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 with open('README.md') as f:
-    long_description = f.read()
+    LONG_DESCRIPTION = f.read()
 
 setup(
     name='mortgage',
     version='1.0.3',
     description='Mortgage Calculator',
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     author='Austin McConnell',
     author_email='austin.s.mcconnell@gmail.com',

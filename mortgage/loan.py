@@ -1,9 +1,4 @@
-"""
-mortgage.loan
-~~~~~~~~~~~~~~~~
-
-This module provides a Loan object to create and calculate various mortgage statistics.
-"""
+"""The  Loan object used to create and calculate various mortgage statistics."""
 from collections import namedtuple
 from decimal import Decimal
 from typing import Tuple
@@ -12,8 +7,10 @@ Installment = namedtuple('Installment', 'number payment interest principal total
 
 
 class Loan(object):
-    """A user-created :class:`Loan <Loan>` object for creating a loan, calculating amortization
-    schedule, and showing statistics.
+    """
+    :class:`Loan <Loan>` object used to create a loan.
+
+    This object can calculate amortization schedule and show summary statistics for the loan.
 
     :param principal: The original sum of money borrowed.
     :param interest: The amount charged by lender for use of the assets.
@@ -26,6 +23,7 @@ class Loan(object):
         >>> Loan(principal=200000, interest=.04125, term=15)
         <Loan principal=200000, interest=0.04125, term=15>
     """
+
     def __init__(self, principal, interest, term, term_unit='years', compounded='monthly'):
 
         term_units = {'days', 'months', 'years'}
@@ -59,14 +57,15 @@ class Loan(object):
         return Decimal(value).quantize(Decimal('0.01'))
 
     def schedule(self, nth_payment=None):
-        """Retreive payment information for the nth payment.
+        """
+        Retrieve payment information for the nth payment.
 
-                Usage:
-                    >>> from mortgage import Loan
-                    >>> loan = Loan(principal=200000, interest=.06, term=30)
-                    >>> loan.schedule(1)
-                    Installment(number=1, payment=Decimal('1199.101050305504789182922487'), interest=Decimal('1E+3'), principal=Decimal('199.101050305504789182922487'), total_interest=Decimal('1000'), balance=Decimal('199800.8989496944952108170775'))
-                """
+        Usage:
+            >>> from mortgage import Loan
+            >>> loan = Loan(principal=200000, interest=.06, term=30)
+            >>> loan.schedule(1)
+            Installment(number=1, payment=Decimal('1199.101050305504789182922487'), interest=Decimal('1E+3'), principal=Decimal('199.101050305504789182922487'), total_interest=Decimal('1000'), balance=Decimal('199800.8989496944952108170775'))
+        """
         if nth_payment:
             data = self._schedule[nth_payment]
         else:
@@ -84,7 +83,8 @@ class Loan(object):
 
     @property
     def monthly_payment(self):
-        """The total monthly payment (principal and interest) for the loan.
+        """
+        Return the total monthly payment (principal and interest) for the loan.
 
         Usage:
             >>> from mortgage import Loan
@@ -100,8 +100,11 @@ class Loan(object):
 
     @property
     def apr(self) -> Decimal:
-        """The annual percentage rate (or APR) is the amount of interest on your total loan amount
-        that you'll pay annually (averaged over the full term of the loan)
+        """
+        Return the annual percentage rate (APR).
+
+        APR is the amount of interest on your total loan amount that
+        you'll pay annually (averaged over the full term of the loan)
 
         Usage:
             >>> from mortgage import Loan
@@ -115,7 +118,10 @@ class Loan(object):
 
     @property
     def apy(self) -> Decimal:
-        """The annual percentage yield (APY) is the effective annual rate of return taking into
+        """
+        Return the annual percentage yield (APY).
+
+        APY is the effective annual rate of return taking into
         account the effect of compounding interest.
 
         Usage:
@@ -129,7 +135,8 @@ class Loan(object):
 
     @property
     def total_principal(self) -> Decimal:
-        """Total principal paid over the life of the loan.
+        """
+        Return the total principal paid over the life of the loan.
 
         Usage:
             >>> from mortgage import Loan
@@ -141,7 +148,8 @@ class Loan(object):
 
     @property
     def total_interest(self) -> Decimal:
-        """Total interest paid over the life of the loan.
+        """
+        Return the total interest paid over the life of the loan.
 
         Usage:
             >>> from mortgage import Loan
@@ -153,7 +161,8 @@ class Loan(object):
 
     @property
     def total_paid(self) -> Decimal:
-        """Total paid (principal and interest) over the life of the loan.
+        """
+        Return the total amount paid (both principal and interest) over the life of the loan.
 
         Usage:
             >>> from mortgage import Loan
@@ -165,8 +174,8 @@ class Loan(object):
 
     @property
     def interest_to_principle(self) -> Decimal:
-        """Property that returns percentage of the principal is payed to the bank over the life of the loan in
-        interest charges.
+        """
+        Return the percentage of the principal that is payed in interest over the life of the loan.
 
         Usage:
             >>> from mortgage import Loan
@@ -178,8 +187,8 @@ class Loan(object):
 
     @property
     def years_to_pay(self) -> float:
-        """Property that returns how many years it will take to pay off this loan given the
-        payment schedule.
+        """
+        Return the number of years it will take to pay off this loan given the payment schedule.
 
         Usage:
             >>> from mortgage import Loan
@@ -205,7 +214,8 @@ class Loan(object):
         print('Years to pay:              {:>11}'.format(self.years_to_pay))
 
     def split_payment(self, number: int, amount: Decimal) -> Tuple[Decimal, Decimal]:
-        """Splits payment amount into principal and interest.
+        """
+        Split payment amount into principal and interest.
 
         :param number: the payment number (e.g. nth payment)
         :param amount: the total payment amount to be split
@@ -217,7 +227,6 @@ class Loan(object):
             >>> loan.split_payment(number=180, amount=Decimal(1199.10))
             (Decimal('8.396585353715933437157525763'), Decimal('1190.703414646283975613372297'))
         """
-
         def compute_interest_portion(payment_number):
             _int = self.interest / 12
             _intp1 = _int + 1
