@@ -50,15 +50,12 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          key: v1-dependencies-{{ checksum "setup.py" }}
       - run:
-          name: Init .pypirc
+          name: Install python dependencies
           command: |
-            echo -e "[pypi]" >> ~/.pypirc
-            echo -e "repository = $PYPI_REPOSITORY" >> ~/.pypirc
-            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
-            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install twine wheel
       - run:
           name: Create Packages
           command: |
