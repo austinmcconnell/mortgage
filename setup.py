@@ -22,8 +22,7 @@ setup(
                     'recommonmark>=0.4.0,<1.0.0',
                     'sphinx>=1.7.4,<2.0.0',
                     'sphinx-autodoc-typehints>=1.3.0,<2.0.0',
-                    'tox>=3.0.0,<4.0.0',
-                    'twine>=1.11.0,<2.0.0',]
+                    'tox>=3.0.0,<4.0.0']
     },
     license='MIT license',
     zip_safe=False,
