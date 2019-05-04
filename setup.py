@@ -17,6 +17,7 @@ setup(
     install_requires=[],
     extras_require={
         'develop': ['bump2version>=0.5.10,<1.0.0',
+                    'pre-commit>=1.16.0,<2.0.0',
                     'pytest>=3.2.1,<4.0.0',
                     'pytest-cov>=2.5.1,<3.0.0',
                     'recommonmark>=0.4.0,<1.0.0',
