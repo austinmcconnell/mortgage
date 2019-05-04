@@ -1,14 +1,22 @@
 Mortgage
 ====================
 
-[![PyPI][pypi_logo]][pypi_link] [![CircleCI][circleci_logo]][circleci_link] [![Codecov][codecov_logo]][codecov_link] [![Pyup][pyup_logo]][pyup_link] [![ReadTheDocs][readthedocs_logo]][readthedocs_link] [![Say Thanks!][saythanks_logo]][saythanks_link]
+[![PyPI][pypi_logo]][pypi_link]
+[![CircleCI][circleci_logo]][circleci_link]
+[![Maintainability Coverage][codeclimate_maintainability_logo]][codeclimate_maintainability_link]
+[![Test Coverage][codeclimate_testcoverage_logo]][codeclimate_testcoverage_link]
+[![Pyup][pyup_logo]][pyup_link]
+[![ReadTheDocs][readthedocs_logo]][readthedocs_link]
+[![Say Thanks!][saythanks_logo]][saythanks_link]
 
 [pypi_logo]: https://img.shields.io/pypi/v/mortgage.svg
 [pypi_link]: https://pypi.python.org/pypi/mortgage
 [circleci_logo]: https://circleci.com/gh/austinmcconnell/mortgage.svg?style=shield
 [circleci_link]: https://circleci.com/gh/austinmcconnell/mortgage
-[codecov_logo]: https://codecov.io/gh/austinmcconnell/mortgage/branch/master/graph/badge.svg
-[codecov_link]: https://codecov.io/gh/austinmcconnell/mortgage
+[codeclimate_maintainability_logo]: https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/maintainability
+[codeclimate_maintainability_link]: https://codeclimate.com/github/austinmcconnell/mortgage/maintainability
+[codeclimate_testcoverage_logo]: https://api.codeclimate.com/v1/badges/ee719e510c795ebcc401/test_coverage
+[codeclimate_testcoverage_link]: https://codeclimate.com/github/austinmcconnell/mortgage/test_coverage
 [pyup_logo]: https://pyup.io/repos/github/austinmcconnell/mortgage/shield.svg
 [pyup_link]: https://pyup.io/repos/github/austinmcconnell/mortgage/
 [readthedocs_logo]: https://readthedocs.org/projects/mortgage/badge/?version=latest
