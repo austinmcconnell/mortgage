@@ -5,12 +5,27 @@ workflows:
       - test:
           name: "test_35"
           version: "3.5"
+          filters:
+            tags:
+              only: /^v\d+.\d+.\d+.*/
+            branches:
+              only: /.*/
       - test:
           name: "test_36"
           version: "3.6"
+          filters:
+            tags:
+              only: /^v\d+.\d+.\d+.*/
+            branches:
+              only: /.*/
       - test:
           name: "test_37"
           version: "3.7"
+          filters:
+            tags:
+              only: /^v\d+.\d+.\d+.*/
+            branches:
+              only: /.*/
       - deploy:
           name: "deploy_testing"
           requires:
