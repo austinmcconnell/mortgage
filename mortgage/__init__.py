@@ -15,6 +15,6 @@
 
 __author__ = 'Austin McConnell'
 __email__ = 'austin.s.mcconnell@gmail.com'
-__version__ = '1.0.3rc'
+__version__ = '1.0.3'
 
 from mortgage.loan import Loan

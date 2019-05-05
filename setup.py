@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='mortgage',
-    version='1.0.3rc',
+    version='1.0.3',
     description='Mortgage Calculator',
     long_description=long_description,
     long_description_content_type='text/markdown',
