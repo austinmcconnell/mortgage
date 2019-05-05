@@ -129,3 +129,4 @@ output/*/index.html
 .idea/
 
 examples/
+.nox/
