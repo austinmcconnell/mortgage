@@ -16,7 +16,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[],
     extras_require={
-        'develop': ['bumpversion>=0.5.3,<1.0.0',
+        'develop': ['bump2version>=0.5.10,<1.0.0',
                     'pytest>=3.2.1,<4.0.0',
                     'pytest-cov>=2.5.1,<3.0.0',
                     'recommonmark>=0.4.0,<1.0.0',
