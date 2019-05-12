@@ -28,3 +28,4 @@ repos:
     hooks:
       - id: pylint
         args: ['--ignore=migrations,env.py']
+exclude: 'docs'
