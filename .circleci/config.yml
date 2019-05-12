@@ -1,4 +1,5 @@
 version: 2.1
+
 workflows:
   test_and_deploy:
     jobs:
@@ -31,6 +32,12 @@ workflows:
             branches:
               ignore: /.*/
           context: production
+
+executors:
+  python:
+    docker:
+      - image: circleci/python:3.7
+
 jobs:
   nox:
     docker:
@@ -46,10 +53,9 @@ jobs:
       version:
         type: string
         default: latest
-    docker:
-      - image: circleci/python:<< parameters.version >>
-        environment:
-          CC_TEST_REPORTER_ID: 2ff265eea22d20ff03ee63b761cd022679ed2bb1829dddd4020dcbff6b21dd6b
+    executor: python
+      environment:
+        CC_TEST_REPORTER_ID: 2ff265eea22d20ff03ee63b761cd022679ed2bb1829dddd4020dcbff6b21dd6b
     working_directory: ~/repo
     steps:
       - checkout
@@ -82,8 +88,7 @@ jobs:
           path: test-reports
           destination: test-reports
   deploy:
-    docker:
-      - image: circleci/python:3.7
+    executor: python
     working_directory: ~/repo
     steps:
       - checkout
