@@ -87,7 +87,7 @@ class TestLoan(object):
         assert loan_200k.total_paid == convert(431676.38)
 
     def test_interest_to_principle(self, loan_200k):
-        assert loan_200k.interest_to_principle == convert(115.8)
+        assert loan_200k.interest_to_principle == 115.8
 
     def test_years_to_pay(self, loan_200k):
         assert loan_200k.years_to_pay == 30
