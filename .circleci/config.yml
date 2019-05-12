@@ -54,8 +54,6 @@ jobs:
         type: string
         default: latest
     executor: python
-      environment:
-        CC_TEST_REPORTER_ID: 2ff265eea22d20ff03ee63b761cd022679ed2bb1829dddd4020dcbff6b21dd6b
     working_directory: ~/repo
     steps:
       - checkout
@@ -84,6 +82,8 @@ jobs:
             ./cc-test-reporter before-build
             pytest --cov mortgage --cov-report xml
             ./cc-test-reporter after-build --coverage-input-type coverage.py --exit-code $?
+          environment:
+            CC_TEST_REPORTER_ID: 2ff265eea22d20ff03ee63b761cd022679ed2bb1829dddd4020dcbff6b21dd6b
       - store_artifacts:
           path: test-reports
           destination: test-reports
