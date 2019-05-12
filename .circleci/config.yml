@@ -8,6 +8,9 @@ workflows:
               only: /.*/
             branches:
               only: /.*/
+      - test:
+          name: "test_37"
+          version: "3.7"
       - deploy:
           name: "deploy_testing"
           requires:
