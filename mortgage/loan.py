@@ -173,7 +173,7 @@ class Loan(object):
         return self.total_principal + self.total_interest
 
     @property
-    def interest_to_principle(self) -> Decimal:
+    def interest_to_principle(self) -> float:
         """
         Return the percentage of the principal that is payed in interest over the life of the loan.
 
@@ -181,9 +181,9 @@ class Loan(object):
             >>> from mortgage import Loan
             >>> loan = Loan(principal=200000, interest=.06, term=15)
             >>> loan.interest_to_principle
-            Decimal('51.9')
+            51.9
         """
-        return round(self.total_interest / self.total_principal * 100, 1)
+        return float(round(self.total_interest / self.total_principal * 100, 1))
 
     @property
     def years_to_pay(self) -> float:
