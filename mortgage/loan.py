@@ -17,6 +17,7 @@ class Loan(object):
     :param term: The lifespan of the loan.
     :param term_unit: Unit for the lifespan of the loan.
     :param compounded: Frequency that interest is compounded
+    :param currency: Set the currency symbol for use with summarize
 
     Usage:
         >>> from mortgage import Loan
@@ -24,7 +25,7 @@ class Loan(object):
         <Loan principal=200000, interest=0.04125, term=15>
     """
 
-    def __init__(self, principal, interest, term, term_unit='years', compounded='monthly'):
+    def __init__(self, principal, interest, term, term_unit='years', compounded='monthly', currency='$'):
 
         term_units = {'days', 'months', 'years'}
         compound = {'daily', 'monthly', 'annually'}
@@ -48,6 +49,7 @@ class Loan(object):
         self.compounded = compounded
         self.n_periods = periods[compounded]
         self._schedule = self._amortize()
+        self._currency = currency
 
     def __repr__(self):
         return '<Loan principal={}, interest={}, term={}>'.format(self.principal, self.interest, self.term)
@@ -200,16 +202,16 @@ class Loan(object):
 
     @property
     def summarize(self):
-        print('Original Balance:         ${:>11,}'.format(self.principal))
+        print('Original Balance:         {}{:>11,}'.format(self._currency,self.principal))
         print('Interest Rate:             {:>11} %'.format(self.interest))
         print('APY:                       {:>11} %'.format(self.apy))
         print('APR:                       {:>11} %'.format(self.apr))
         print('Term:                      {:>11} {}'.format(self.term, self.term_unit))
-        print('Monthly Payment:          ${:>11}'.format(self.monthly_payment))
+        print('Monthly Payment:          {}{:>11}'.format(self._currency,self.monthly_payment))
         print('')
-        print('Total principal payments: ${:>11,}'.format(self.total_principal))
-        print('Total interest payments:  ${:>11,}'.format(self.total_interest))
-        print('Total payments:           ${:>11,}'.format(self.total_paid))
+        print('Total principal payments: {}{:>11,}'.format(self._currency,self.total_principal))
+        print('Total interest payments:  {}{:>11,}'.format(self._currency,self.total_interest))
+        print('Total payments:           {}{:>11,}'.format(self._currency,self.total_paid))
         print('Interest to principal:     {:>11} %'.format(self.interest_to_principle))
         print('Years to pay:              {:>11}'.format(self.years_to_pay))
 
