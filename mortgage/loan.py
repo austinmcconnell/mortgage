@@ -159,7 +159,7 @@ class Loan(object):
             >>> loan.total_interest
             Decimal('103788.46')
         """
-        return self._quantize(self.schedule(self.term * 12).total_interest)
+        return self._quantize(self.schedule(self.term * self.n_periods).total_interest)
 
     @property
     def total_paid(self) -> Decimal:
