@@ -1,3 +1,7 @@
+> :warning: **THIS REPOSITORY IS UNMAINTAINED** :warning:
+> 
+>I was the creator of the Mortgage package and I maintained it from 2018 until version 1.5. The new official source for the Mortgage package is [jlumbroso/mortgage](https://github.com/jlumbroso/mortgage).
+
 Mortgage
 ====================
 
