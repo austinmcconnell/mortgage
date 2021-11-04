@@ -62,6 +62,9 @@ class TestLoan(object):
     def test_nth_balance(self, loan_200k, nth_payment, balance):
         assert convert(loan_200k.schedule(nth_payment).balance) == convert(balance)
 
+    def tests_schedule(self, loan_200k):
+        assert len(loan_200k.schedule()) == loan_200k.term * loan_200k.n_periods + 1
+
     def test_original_balance(self, loan_200k):
         assert loan_200k.principal == convert(200000.00)
 
@@ -91,3 +94,6 @@ class TestLoan(object):
 
     def test_years_to_pay(self, loan_200k):
         assert loan_200k.years_to_pay == 30
+
+    def test_summarize(self, loan_200k):
+        assert loan_200k.summarize is None
