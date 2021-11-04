@@ -13,7 +13,7 @@ class Loan(object):
     This object can calculate amortization schedule and show summary statistics for the loan.
 
     :param principal: The original sum of money borrowed.
-    :param interest: The amount charged by lender for use of the assets.
+    :param interest: The amount charged by lender for use of the assets in fraction, not percentage.
     :param term: The lifespan of the loan.
     :param term_unit: Unit for the lifespan of the loan.
     :param compounded: Frequency that interest is compounded
@@ -203,7 +203,7 @@ class Loan(object):
     @property
     def summarize(self):
         print('Original Balance:         {}{:>11,}'.format(self._currency,self.principal))
-        print('Interest Rate:             {:>11} %'.format(self.interest))
+        print('Interest Rate:             {:>11} %'.format(100 * self.interest))
         print('APY:                       {:>11} %'.format(self.apy))
         print('APR:                       {:>11} %'.format(self.apr))
         print('Term:                      {:>11} {}'.format(self.term, self.term_unit))
